@@ -14,6 +14,8 @@ test.describe('User Login Scenarios', () => {
 
     // Assert that the user is redirected to the account overview page
     await expect(page.getByRole('heading', { name: 'Accounts Overview' })).toBeVisible();
+
+    //Screenshot
     await page.screenshot({ path: 'screenshots/full-page.png', fullPage: true });
 
   });
