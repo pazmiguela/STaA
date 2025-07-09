@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
     await page.getByRole('link', {name: 'Admin Page' }).click();
     await page.getByRole('button', { name: 'Clean' }).click();
 });
-
+await page.pause();
     test('Verify that user is able to register account', async ({ page }) => {
         await page.goto('https://parabank.parasoft.com/parabank/index.htm');
         await page.getByRole('link', {name: 'Register' }).click();
