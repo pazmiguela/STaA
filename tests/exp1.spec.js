@@ -10,10 +10,10 @@ test('navigation', async ({ page }) => {
 });
 
 test('test', async ({ page }) => {
-  await page.locator('.login_logo').click();
-  await page.locator('form').click();
-  await expect(page.locator('[data-test="username"]')).toBeEmpty();
-  await expect(page.locator('[data-test="password"]')).toBeEmpty();
+  await page.locator('.login_logo').toBeVisible();
+  await page.locator('form').toBeVisible;
+  await expect(page.locator('[data-test="username"]')).toHaveText('Username');
+  await expect(page.locator('[data-test="password"]')).toHaveText('Password');
   await expect(page).toHaveTitle(/Swag Labs/);
   await expect(response).toBeOK()
 }); 
