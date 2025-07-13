@@ -11,7 +11,6 @@ test('navigation', async ({ page }) => {
 
 test('test', async ({ page }) => {
   await page.locator('.login_logo').toBeVisible();
-  await page.locator('form').toBeVisible;
   await expect(page.locator('[data-test="username"]')).toHaveText('Username');
   await expect(page.locator('[data-test="password"]')).toHaveText('Password');
   await expect(page).toHaveTitle(/Swag Labs/);
