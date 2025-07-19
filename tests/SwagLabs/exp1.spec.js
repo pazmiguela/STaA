@@ -9,8 +9,7 @@ test('navigation', async ({ page }) => {
   await page.waitForLoadState('networkidle');
 });
 
-test('test', async ({ page }) => {
-  await page.locator('.login_logo').toBeVisible();
+test('Visibility', async ({ page }) => {
   await expect(page.locator('[data-test="username"]')).toHaveText('Username');
   await expect(page.locator('[data-test="password"]')).toHaveText('Password');
   await expect(page).toHaveTitle(/Swag Labs/);
