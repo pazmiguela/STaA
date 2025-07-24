@@ -1,3 +1,4 @@
+/*Create a test in Parabank where a user can register with valid credentials*/
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {

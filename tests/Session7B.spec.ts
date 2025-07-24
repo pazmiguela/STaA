@@ -1,3 +1,6 @@
+/*Using codegen, create a test where a user tries to log-in with a wrong password.
+Site: Swag Labs*/
+
 import { test, expect } from '@playwright/test';
 
 test('Test if error message appears when user tries to log-in with wrong credentials', async ({ page }) => {

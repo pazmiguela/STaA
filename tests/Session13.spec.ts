@@ -1,0 +1,1 @@
+/*Apply Auth Setup + Storage State to spec files related to Sauce Demo*/
