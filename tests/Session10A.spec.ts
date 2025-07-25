@@ -1,4 +1,5 @@
-/*Run a test with PW Trace Viewer and successfully run your test on CI (ex. login.spec.js should be run on CI)*/
+/*Apply all the learnings about locators, advanced 
+Add, commit and push it to your GitHub Repository*/
 
 import { test, expect } from '@playwright/test';
 
@@ -21,3 +22,16 @@ test('Test that the filters are working', async ({ page }) => {
   await expect(page.getByRole('cell', { name: 'zebra' }).nth(1)).toBeVisible();
   await expect(page.getByRole('cell', { name: 'zebra' }).nth(2)).toBeVisible();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
