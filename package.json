@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "auth-setup": "npx playwright test tests/auth.setup.ts --project setup"
+    "auth-setup": "npx playwright test tests/auth.setup.ts --project setup",
+    "e2e-test": "npx playwright test e2e.spec.ts --project e2e"
   },
   "repository": {
     "type": "git",
