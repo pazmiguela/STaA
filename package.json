@@ -2,7 +2,9 @@
   "name": "staa",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "auth-setup": "npx playwright test tests/auth.setup.ts --project setup"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pazmiguela/STaA.git"

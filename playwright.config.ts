@@ -14,7 +14,7 @@ dotenv.config({ path: path.resolve(".env") });
  * @see https://playwright.dev/docs/test-configuration
  */
 
-//export const STORAGE_STATE = path.join(__dirname, "./.auth/user.json");
+export const STORAGE_STATE = path.join("./.auth/user.json");
 
 export default defineConfig({
   testDir: './tests',
@@ -44,7 +44,7 @@ export default defineConfig({
       name: 'setup',
       testMatch: "**/*.setup\.ts",
     },
-/*
+
     {
       name: "e2e",
       dependencies: ['setup'],
@@ -56,7 +56,8 @@ export default defineConfig({
         },
       },
     }, 
-        baseURL: process.env.BASE_URL || 'http://localhost:3000',
+/*
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
       }
     }
 
