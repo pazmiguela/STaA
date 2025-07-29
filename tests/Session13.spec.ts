@@ -1,7 +1,7 @@
 /*Apply Auth Setup + Storage State to spec files related to Sauce Demo
 
-Hi Sir Reg! Please see my other repository @
+Hi Sir Reg! Please see auth.setup.ts & e2e.spec.ts
 
-https://github.com/pazmiguela/STaA2
+Thank you!
 
 */
