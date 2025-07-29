@@ -1,17 +1,21 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
+import path from "path";
+import dotenv from "dotenv";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+dotenv.config({ path: path.resolve(".env") });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
+
+//export const STORAGE_STATE = path.join(__dirname, "./.auth/user.json");
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -35,6 +39,36 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+
+    {
+      name: 'setup',
+      testMatch: "**/*.setup\.ts",
+    },
+/*
+    {
+      name: "e2e",
+      dependencies: ['setup'],
+      use: {
+        storageState: STORAGE_STATE,
+        ...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ["--start-maximized"],
+        },
+      },
+    }, 
+        baseURL: process.env.BASE_URL || 'http://localhost:3000',
+      }
+    }
+
+    {
+      name: 'api',
+      testMatch: /.*\.api\.ts/,
+      use: {
+        storageState: STORAGE_STATE,
+        baseURL: process.env.BASE_URL || 'http://localhost:3000',
+      },
+    }
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
