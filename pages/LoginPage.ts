@@ -1,6 +1,7 @@
 import {expect, Locator, Page} from '@playwright/test';
 
 export class LoginPage {
+
     public readonly usernameInput: Locator;
     public readonly passwordInput: Locator;
     public readonly loginButton: Locator;
@@ -19,4 +20,11 @@ export class LoginPage {
         await this.page.goto('/');
         await this.page.waitForLoadState('domcontentloaded');
     }
+
+    async login(username: string, password: string) {
+    await this.usernameInput.click();
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+}
 }
