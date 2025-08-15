@@ -57,7 +57,7 @@ export default defineConfig({
         },
       },
     }, 
-/*
+
     {
       name: 'api',
       testMatch: /.*\.api\.ts/,
@@ -66,7 +66,7 @@ export default defineConfig({
         baseURL: process.env.BASE_URL || 'http://localhost:3000',
       },
     },
-*/
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
