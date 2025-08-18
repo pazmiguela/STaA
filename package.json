@@ -1,6 +1,7 @@
 {
   "name": "staa",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "auth-setup": "npx playwright test tests/auth.setup.ts --project setup",
@@ -19,16 +20,22 @@
   },
   "homepage": "https://github.com/pazmiguela/STaA#readme",
   "dependencies": {
-    "@faker-js/faker": "^9.9.0",
-    "dotenv": "^17.2.1",
+    "bcryptjs": "^3.0.2",
     "express": "^5.1.0",
     "pw-api-plugin": "^2.0.2"
   },
   "devDependencies": {
+    "@estruyf/github-actions-reporter": "^1.10.0",
+    "@faker-js/faker": "^9.5.0",
     "@playwright/test": "^1.53.2",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.0.10",
+    "chrome-launcher": "^1.2.0",
+    "dotenv": "^17.2.1",
+    "js-yaml": "^4.1.0",
+    "lighthouse": "^12.8.1",
+    "playwright-html": "1.2.5",
     "typescript": "^5.8.3"
   },
-  "description": "",
-  "type": "module"
+  "description": ""
 }
