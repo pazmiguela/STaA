@@ -66,7 +66,13 @@ export default defineConfig({
         baseURL: process.env.BASE_URL || 'http://localhost:3000',
       },
     },
-
+ {
+    name: 'Chrome',
+    use: {
+      browserName: 'chromium',
+      channel: 'chrome', // This requires Chrome to be installed
+    },
+  },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

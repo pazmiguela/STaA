@@ -6,49 +6,31 @@ Step 3 - Run the test - npx playwright test performance.spec.ts --project chromi
 Step 4 - Open the Report - Screenshot it and send to #daily-updates-test-automation
 */
 
-import { chromium, test } from '@playwright/test';
-// import { runLighthouseWithCustomConfig } from '../shared/lighthouse-helper';
-//inserted
-import lighthouse from 'lighthouse';
-import { launch } from 'chrome-launcher';
+import { test } from '@playwright/test';
+import { runLighthouseWithCustomConfig } from '../shared/lighthouse-helper';
+import fs from 'fs';
 
-export async function runLighthouseWithCustomConfig(
-  url: string,
-  configPath = 'lighthouse.config.yml'
-) {
-  const userConfig = loadConfig(configPath);
+test('Custom Lighthouse audit from config', async ({}, testInfo) => {
+  const url = 'https://www.saucedemo.com/';
+  const result = await runLighthouseWithCustomConfig(url);
 
-  // Use Playwright's Chromium path
-  const chromePath = chromium.executablePath();
 
-  const chrome = await launch({
-    chromePath,
-    chromeFlags: ['--headless']
-  });
+  const reportPath = 'lighthouse-report/custom-lighthouse-report.html';
+  if (fs.existsSync(reportPath)) {
+    const reportContent = fs.readFileSync(reportPath);
+    await testInfo.attach('Lighthouse Report', {
+      body: reportContent,
+      contentType: 'text/html',
+    });
+  }
 
-  const options = {
-    output: userConfig.output,
-    onlyCategories: userConfig.onlyCategories,
-    logLevel: userConfig.logLevel,
-    port: chrome.port,
-  };
-
-  const result = await lighthouse(url, options);
-
-} // <-- Add this closing brace for the function
-
-//inserted
-
-test('Custom Lighthouse audit from config', async () => {
-  const url = 'https://www.glucosegoddess.com/';
-  await runLighthouseWithCustomConfig(url, 'lighthouse.config.yml');
+  if (result?.categories) {
+    const summary = Object.entries(result.categories)
+      .map(([cat, val]) => `${cat}: ${val.score}`)
+      .join('\n');
+    await testInfo.attach('Lighthouse Score Summary', {
+      body: Buffer.from(summary),
+      contentType: 'text/plain',
+    });
+  }
 });
-    function loadConfig(configPath: string) {
-        // Dummy config for demonstration; replace with actual config loading logic
-        return {
-            output: 'html',
-            onlyCategories: ['performance'],
-            logLevel: 'info'
-        };
-    }
-
