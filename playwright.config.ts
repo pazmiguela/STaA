@@ -27,7 +27,20 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+     ["html"],
+     ["list"],
+     [
+      "@estruyf/github-actions-reporter",
+       <GitHubActionOptions>{
+         title: "TAPH Playwright Mastery - Test Report",
+        useDetails: true,
+        showError: true,
+      },
+   ],
+  ],
+
+  //  reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
      baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
