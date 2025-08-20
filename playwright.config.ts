@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 import path from "path";
 import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -18,6 +19,7 @@ export const STORAGE_STATE = path.join("./.auth/user.json");
 
 export default defineConfig({
   testDir: './tests',
+  timeout: 60_000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -30,14 +32,12 @@ export default defineConfig({
   reporter: [
      ["html"],
      ["list"],
-     [
-      "@estruyf/github-actions-reporter",
-       <GitHubActionOptions>{
-         title: "TAPH Playwright Mastery - Test Report",
+     ["@estruyf/github-actions-reporter",
+       {title: "STaA Test Report",
         useDetails: true,
         showError: true,
       },
-   ],
+     ],
   ],
 
   //  reporter: 'html',
@@ -73,19 +73,15 @@ export default defineConfig({
 
     {
       name: 'api',
-      testMatch: /.*\.api\.ts/,
-      use: {
-        storageState: STORAGE_STATE,
-        baseURL: process.env.BASE_URL || 'http://localhost:3000',
-      },
+      testMatch: "**/*api.spec.ts",
     },
- {
+    {
     name: 'Chrome',
     use: {
       browserName: 'chromium',
       channel: 'chrome', // This requires Chrome to be installed
     },
-  },
+    },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
