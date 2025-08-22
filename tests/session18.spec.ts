@@ -47,7 +47,7 @@ test.describe('User API Tests', () => {
     expect(response.status()).toBe(201);
     expect(response.ok()).toBeTruthy();
     expect(response.body()).toBeDefined();
-        expect(response.body).not.toHaveProperty('error');
+    expect(response.body).not.toHaveProperty('error');
 });
     // GET User by ID
     test('✔️ GET - Should fetch user by ID', async ({ request }) => {

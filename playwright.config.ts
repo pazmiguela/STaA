@@ -36,14 +36,13 @@ export default defineConfig({
        {title: "STaA Test Report",
         useDetails: true,
         showError: true,
-      },
-     ],
+      },],
   ],
 
   //  reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-     baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
+    //baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
@@ -54,9 +53,9 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
+   /* {
       name: 'setup',
-      testMatch: "**/*.setup\.ts",
+      testMatch: "**.setup\.ts",
     },
 
     {
@@ -70,11 +69,12 @@ export default defineConfig({
         },
       },
     }, 
-
+/*
     {
       name: 'api',
-      testMatch: "**/*api.spec.ts",
+      testMatch: "**.spec.ts",
     },
+    
     {
     name: 'Chrome',
     use: {
@@ -82,6 +82,7 @@ export default defineConfig({
       channel: 'chrome', // This requires Chrome to be installed
     },
     },
+    */
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
