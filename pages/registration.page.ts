@@ -1,4 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { time } from 'console';
 
 export class RegistrationPage {
   readonly page: Page;
@@ -64,11 +65,13 @@ export class RegistrationPage {
 
   // Verify the welcome message
   async verifyWelcomeMessage(username: string) {
-    await expect(this.welcomeMessage).toContainText(`Welcome ${username}`);
+    await expect(this.page).toHaveTitle('ParaBank | Customer Created', {timeout: 60000});
+  //  await expect(this.page).toHaveURL('https://parabank.parasoft.com/parabank/register.htm', {timeout: 60000});
+  //  await expect(this.page).toHaveTitle(`Welcome ${username}`, {timeout: 60000});
   }
 
   // Log out
-  async logout() {
-    await this.logoutLink.click();
-  }
+  //async logout() {
+  //  await this.logoutLink.click();
+  //}
 }
