@@ -23,7 +23,7 @@ import customers from '../test data/customers.json'; // adjust path if needed
 
 test.describe.configure({ mode: "serial" });
 test.describe('User API Tests', () => {
-    const apiBaseUrl = 'http://localhost:3000/api/users';
+    const apiBaseUrl = 'http://localhost:3000/';
 
     // POST METHOD for User Registration
     test('✔️ POST - Should register a new user', async ({ request }) => {

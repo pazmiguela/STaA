@@ -37,6 +37,10 @@ export default defineConfig({
         useDetails: true,
         showError: true,
       },],
+          [
+      '@artilleryio/playwright-reporter',
+      { name: 'Test Suite' }
+    ],
   ],
 
   //  reporter: 'html',
@@ -125,4 +129,7 @@ export default defineConfig({
      url: 'http://localhost:3000',
      reuseExistingServer: !process.env.CI,
   }
+  
 })
+
+// playwright.config.ts
