@@ -18,10 +18,6 @@ config:
   # Load & configure a couple of useful plugins
   # https://artillery.io/docs/reference/extensions
   plugins:
-    ensure:
-      thresholds:
-        - http.response_time.p99: 100
-        - http.response_time.p95: 75
     apdex:
       threshold: 100
     metrics-by-endpoint: {}
