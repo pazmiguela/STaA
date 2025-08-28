@@ -1,17 +1,17 @@
-/* Data-driven testing using customers.json
-   customers.json is used in the execution of registration.spec.ts
+/* Activity: Apply data-driven testing in API
+1. Using customers.json to excecute registration.spec.ts
    Side note: POM, fixtures & tagging are used in this test file
 
-   Activity: Apply data-driven testing in API
+2. Using faker-js to generate random user data for registration
+   Remember to install faker with npm i @faker-js/faker
+   To execute: reun server first
+      cd backend
+      node server.js
+   Then run user-api-test
+   
+Review in S18 Recording: Part 4 5:40
 
-   s18: Part 4 5:40
-
-   cd backend
-   node server.js
-   run user-api-test
-
-   Then for weekdays: Sa automation exercise.com,
-   study product-details-ve-spec.ts
+HW for weekdays: Study product-details-ve-spec.ts in automation exercise.com
 */
 
 import { test, expect } from '@playwright/test';

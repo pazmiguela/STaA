@@ -1,1 +1,1 @@
-/*Session 16 activity was to run API test. Done! */
+/*Session 16 activity was to run API test using Sir Reg's step-by-step instructions. Done! */

@@ -3,6 +3,21 @@ Apply POM + Fixtures from login.spec.ts to auth.setup.ts
 Create base.ts
 */
 
+import { expect, test as setup } from '@playwright/test';
+import { STORAGE_STATE } from '../playwright.config';
+import { LoginPage } from '../pages/LoginPage';
+
+setup('Log-in using class LoginPage.ts', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  
+  await loginPage.navigate();
+  await loginPage.login(process.env.SAUCE_USERNAME!, process.env.SAUCE_PASSWORD!);
+
+  await expect(page.getByText('Swag Labs')).toBeVisible();
+
+  await page.context().storageState({ path: STORAGE_STATE });
+});
+
 /*Refactored auth.setup.ts to use POM
 
 import { expect, test as setup } from '@playwright/test';
@@ -20,18 +35,3 @@ setup('Do Login', async ({ page }) => {
   await page.context().storageState({ path: STORAGE_STATE });
 });
 */
-
-import { expect, test as setup } from '@playwright/test';
-import { STORAGE_STATE } from '../playwright.config';
-import { LoginPage } from '../pages/LoginPage';
-
-setup('Log-in using class LoginPage.ts', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  
-  await loginPage.navigate();
-  await loginPage.login(process.env.SAUCE_USERNAME!, process.env.SAUCE_PASSWORD!);
-
-  await expect(page.getByText('Swag Labs')).toBeVisible();
-
-  await page.context().storageState({ path: STORAGE_STATE });
-});

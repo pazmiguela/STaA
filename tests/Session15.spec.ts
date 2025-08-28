@@ -1,4 +1,8 @@
-/*Session 15 Activity: implement all the learnings about API testing with Playwright due on July 31, 2025. */
+/*Session 15 Activity: implement all the learnings about API testing with Playwright due on July 31, 2025.
+
+In this test suite, I made a GET, POST, PUT, PATCH & DELETE request using https://api.restful-api.dev/
+
+Note: Only GET & POST are working. I think I need an API key for the rest to work.*/
 
 import {test, expect} from '@playwright/test';
 import exp from 'constants';

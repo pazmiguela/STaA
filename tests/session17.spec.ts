@@ -1,4 +1,5 @@
-/* Create a spec file: pw-plugin-api.spec.ts (already existing)
+/* Create a spec file: pw-plugin-api.spec.ts (already existing in Sir Reg's repo)
+
 Create test cases inside the file for API https://jsonplaceholder.typicode.com
 */
 
