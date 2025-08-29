@@ -1,21 +1,21 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
-import path from "path";
-import dotenv from "dotenv";
-dotenv.config({ quiet: true });
+//import path from "path";
+//import dotenv from "dotenv";
+//dotenv.config({ quiet: true });
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 
-dotenv.config({ path: path.resolve(".env") });
+//dotenv.config({ path: path.resolve(".env") });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
 
-export const STORAGE_STATE = path.join("./.auth/user.json");
+//export const STORAGE_STATE = path.join("./.auth/user.json");
 
 export default defineConfig({
   testDir: './tests',
@@ -32,7 +32,7 @@ export default defineConfig({
   reporter: [
      ["html"],
      ["list"],
-     ["@estruyf/github-actions-reporter",
+  /*   ["@estruyf/github-actions-reporter",
        {title: "STaA Test Report",
         useDetails: true,
         showError: true,
@@ -40,7 +40,7 @@ export default defineConfig({
           [
       '@artilleryio/playwright-reporter',
       { name: 'Test Suite' }
-    ],
+    ],*/
   ],
 
   //  reporter: 'html',

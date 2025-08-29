@@ -1,5 +1,6 @@
 /* Activity: Apply data-driven testing in API
-1. Using customers.json to excecute registration.spec.ts
+
+1. Using customers.json to excecute registration.spec.ts (I made a new test para hindi na Parabank)
    Side note: POM, fixtures & tagging are used in this test file
 
 2. Using faker-js to generate random user data for registration
@@ -18,7 +19,8 @@ import { test, expect } from '@playwright/test';
 // Make sure the apiUtils.ts file exists at the correct path, or update the path below if needed
 import { registerRandomUser, registerFakerUser } from '../shared/apiUtils';
 // If the file is not present, create ../shared/apiUtils.ts and export the required functions
-import customers from '../test data/customers.json'; // adjust path if needed
+import fs from 'fs';
+const customers = JSON.parse(fs.readFileSync('test data/customers.json', 'utf-8'));
 
 
 test.describe.configure({ mode: "serial" });

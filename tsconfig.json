@@ -3,8 +3,8 @@
     "outDir": "./dist",
     "rootDir": "./",
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "esnext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -12,6 +12,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true
+
+
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"]
 }
