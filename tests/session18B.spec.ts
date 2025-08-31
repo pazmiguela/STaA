@@ -15,68 +15,45 @@ Review in S18 Recording: Part 4 5:40
 HW for weekdays: Study product-details-ve-spec.ts in automation exercise.com
 */
 
+// session18B.spec.ts
 import { test, expect } from '@playwright/test';
-// Make sure the apiUtils.ts file exists at the correct path, or update the path below if needed
 import { registerRandomUser, registerFakerUser } from '../shared/apiUtils';
-// If the file is not present, create ../shared/apiUtils.ts and export the required functions
-import fs from 'fs';
-const customers = JSON.parse(fs.readFileSync('test data/customers.json', 'utf-8'));
 
 
-test.describe.configure({ mode: "serial" });
+test.describe.configure({ mode: 'serial' });
+
 test.describe('User API Tests', () => {
-    const apiBaseUrl = 'http://localhost:3000/';
+  const apiBaseUrl = 'http://localhost:3000/api/users'; // <— no trailing slash
 
-    // POST METHOD for User Registration
-    test('✔️ POST - Should register a new user', async ({ request }) => {
-        const { response, newUser } = await registerRandomUser(request, apiBaseUrl);
-        console.info("Status Code:", response.status());
+  test('✔️ POST - Should register a new user', async ({ request }) => {
+    const { response, newUser } = await registerRandomUser(request, apiBaseUrl);
 
-        // ✅ Replace this line:
-    // console.info("Response Body:", await response.json());
-
-        // 🔁 With this block:
-        const contentType = response.headers()['content-type'];
-        if (contentType?.includes('application/json')) {
-        const body = await response.json();
-        console.info("Response Body:", body);
-        } else {
-        const bodyText = await response.text();
-        console.warn("Non-JSON Response Body:", bodyText);
-    }
-
-    console.info("New User Email:", newUser.name);
     expect(response.status()).toBe(201);
-    expect(response.ok()).toBeTruthy();
-    expect(response.body()).toBeDefined();
-    expect(response.body).not.toHaveProperty('error');
-});
-    // GET User by ID
-    test('✔️ GET - Should fetch user by ID', async ({ request }) => {
-        const userId = 1;
-        const response = await request.get(apiBaseUrl + '/' + userId,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${process.env.USER_DEMO_TOKEN}`,
-                }
-            }
-        );
-        console.info("Status Code:", response.status());
-        console.info("Response Body:", await response.json());
-        expect(response.status()).toBe(200);
-        expect(response.ok()).toBeTruthy();
-        expect(response.body()).toBeDefined();
-    });
 
-    test('✔️ POST - Should register a user using Faker', async ({ request }) => {
-        const { response, newUser } = await registerFakerUser(request, apiBaseUrl);
-        console.info("Status Code:", response.status());
-        console.info("Response Body:", await response.json());
-        console.info("New User Email:", newUser.name);
-        expect(response.status()).toBe(201);
-        expect(response.ok()).toBeTruthy();
-        expect(response.body()).toBeDefined();
-        expect(response.body).not.toHaveProperty('error');
+    const body = await response.json();
+    expect(body).toMatchObject({
+      id: expect.any(Number),
+      // optionally: name/email fields depending on your payload
     });
+    expect(body).not.toHaveProperty('error');
+  });
+
+  test('✔️ GET - Should fetch user by ID', async ({ request }) => {
+    // First create one, then fetch it
+    const { response } = await registerRandomUser(request, apiBaseUrl);
+    const created = await response.json();
+
+    const getResp = await request.get(`${apiBaseUrl}/${created.id}`);
+    expect(getResp.status()).toBe(200);
+
+    const got = await getResp.json();
+    expect(got).toMatchObject({ id: created.id });
+  });
+
+  test('✔️ POST - Should register a user using Faker', async ({ request }) => {
+    const { response } = await registerFakerUser(request, apiBaseUrl);
+    expect(response.status()).toBe(201);
+    const body = await response.json();
+    expect(body).not.toHaveProperty('error');
+  });
 });
