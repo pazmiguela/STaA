@@ -10,8 +10,6 @@ session18B.spec.ts
       cd backend
       node server.js
    Then run user-api-test
-   
-Review in S18 Recording: Part 4 5:40
 
 HW for weekdays: Study product-details-ve-spec.ts in automation exercise.com
 */
